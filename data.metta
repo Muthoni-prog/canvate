@@ -19,12 +19,13 @@
 (ai-used a3 no) (ai-disclosed a3 na) (consent a3 missing) (rights a3 known)
 (theme-fit a3 high) (message a3 high) (provenance a3 medium) (originality a3 high)
 
-; a4: provenance gap, otherwise decent
+; a4: provenance gap, otherwise decent (reaches the threshold exactly when
+;     the originality weight is raised to 4, so it flips to selected)
 (artwork a4) (title a4 "Market Day")
 (ai-used a4 no) (ai-disclosed a4 na) (consent a4 granted) (rights a4 known)
 (theme-fit a4 medium) (message a4 medium) (provenance a4 low) (originality a4 medium)
 
-; a5: very original, weaker theme fit (a challenge will lift this one)
+; a5: very original, weaker theme fit (the originality challenge lifts this one)
 (artwork a5) (title a5 "Neon Elders")
 (ai-used a5 yes) (ai-disclosed a5 yes) (consent a5 granted) (rights a5 known)
 (theme-fit a5 low) (message a5 medium) (provenance a5 high) (originality a5 high)
@@ -43,3 +44,23 @@
 (artwork a8) (title a8 "Quiet Harvest")
 (ai-used a8 no) (ai-disclosed a8 na) (consent a8 granted) (rights a8 known)
 (theme-fit a8 medium) (message a8 high) (provenance a8 medium)
+
+; a9: NO consent fact at all -> cannot be verified, so it goes to a human
+(artwork a9) (title a9 "Mother Tongue Mural")
+(ai-used a9 no) (ai-disclosed a9 na) (rights a9 known)
+(theme-fit a9 high) (message a9 high) (provenance a9 high) (originality a9 high)
+
+; a10: AI used, but nothing recorded about disclosure -> unverifiable
+(artwork a10) (title a10 "Dream Algorithms")
+(ai-used a10 yes) (consent a10 granted) (rights a10 known)
+(theme-fit a10 high) (message a10 medium) (provenance a10 medium) (originality a10 high)
+
+; a11: clean record, modest scores (stays not-selected under the challenge)
+(artwork a11) (title a11 "Tide Notes")
+(ai-used a11 no) (ai-disclosed a11 na) (consent a11 granted) (rights a11 known)
+(theme-fit a11 low) (message a11 medium) (provenance a11 medium) (originality a11 medium)
+
+; a12: clean record, solid scores
+(artwork a12) (title a12 "Open Door Quilt")
+(ai-used a12 no) (ai-disclosed a12 na) (consent a12 granted) (rights a12 known)
+(theme-fit a12 high) (message a12 high) (provenance a12 medium) (originality a12 low)

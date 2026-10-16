@@ -1,0 +1,7 @@
+id,title,ai_used,ai_disclosed,consent,rights,theme_fit,message,provenance,originality
+s1,Sample: River Memory,no,na,granted,known,high,high,high,medium
+s2,Sample: Paper Lanterns,yes,yes,granted,known,medium,high,medium,high
+s3,Sample: Unsigned Sketchbook,no,na,,known,high,medium,medium,high
+s4,Sample: Machine Lullaby,yes,,granted,known,high,medium,high,high
+s5,Sample: Harbour Song,no,na,granted,unknown,high,high,medium,medium
+s6,Sample: Quiet Fields,no,na,granted,known,medium,medium,low,
