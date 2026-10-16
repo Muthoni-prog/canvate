@@ -1,81 +1,79 @@
 # Glass Jury
 
-**A MeTTa jury assistant that shows its work.**
+**A glass-box jury assistant built in MeTTa.** Glass Jury is a transparent, rule-based decision-support agent. It scores artworks against a jury's rules and shows the full reasoning trail behind every verdict, so jurors can check it, challenge it, and trust it. It supports human jurors; it does not replace them.
 
-Track: MeTTa Foundation · Challenge: The Glass Box Agent
-State of the Art Hackathon (BASIX.MARKET x SingularityNET), October 2026
+*Built for the State of the Art Hackathon (BASIX.MARKET), MeTTa Foundation track, "The Glass Box Agent" challenge. HFAS brief: a jury assistant that shows why an artwork was selected.*
 
-Team: Ruth Ndegwa (lead), Lilian Ndolo, Dunson Kimani
+**Demo video:** [[ADD YOUR VIDEO LINK HERE, or delete this line]]
 
----
+**App Link:**[https://canvate-95appt2qmrbuplfzgbnymxf.streamlit.app/]
+## The problem
 
-## What we are building
+Art juries and selection panels often cannot explain why one work was chosen over another, and opaque AI scoring makes that worse. Artists and organizers need decisions they can inspect and contest.
 
-Art juries decide which works get seen, but the reasons behind those decisions are rarely visible. Artists are rejected without explanation, and in an AI-for-peace show there are extra questions: was AI used, was it disclosed, is the artist's consent on record, and does the work truly fit the theme?
+## What it does
 
-Glass Jury is a MeTTa agent that helps a jury choose artworks for a show like the Harlem Fine Arts Show. It checks each work against explicit rules and returns a verdict of **Selected**, **Needs review**, or **Not selected**. Every verdict comes with the full reasoning trail, and missing information is flagged rather than guessed.
+- Scores each artwork with weighted criteria: theme fit, message, provenance, originality.
+- **Hard gates** (artist consent, AI use disclosed, rights holder known). A gate that fails, or cannot be verified, sends the work to **human review**. The agent never auto-rejects.
+- **Missing data is flagged as a gap, never guessed**, and confidence is reduced.
+- Every verdict comes with a reasoning trail returned by the MeTTa rule `(why $artwork)`.
+- **Juror challenge:** change a weight, the threshold, or a gate and see exactly which verdicts move, with a rule change log.
 
-Jurors can **challenge** the agent: change a rule or a weight and watch the rankings update, with the reason for each change. The decision stays with the human jury. The agent makes the reasoning visible so it can be checked, questioned, and trusted before anything is chosen.
+### What kind of AI is this?
 
-## How it works
+Symbolic, rule-based AI for decision support. The rules are written explicitly in MeTTa and applied to facts about each artwork. It does not use machine learning or a language model to make decisions, which is why every step can be shown and challenged.
 
-1. **Input:** a set of artworks described as MeTTa facts (title, artist, theme tags, AI tools used, AI disclosure, consent and rights status, provenance notes).
-2. **Hard gates:** missing artist consent, undisclosed AI use, or an unknown rights holder send a work to *Needs review*. Gates never auto-reject a work.
-3. **Weighted criteria:** theme fit ("Art as Healing, History as Power, Legacy in Motion"), clear peace or community message, provenance completeness, and originality and process shown.
-4. **Output:** a verdict, every rule that fired, flagged gaps, and a confidence level that drops when data is missing.
-5. **Challenge loop:** a juror edits a weight or toggles a rule. The agent re-runs and shows which works moved and which rules caused it.
-
-## Project structure
-
-```
-/rules.metta     Gates, weighted criteria, explanation trace
-/data.metta      Sample artworks as MeTTa facts
-/run.py          Thin runner that calls MeTTa and prints the output
-/README.md
-```
-
-> Update this section to match the actual files in the repo.
+All reasoning lives in `rules.metta` and `data.metta`. Python only loads files, asks MeTTa questions, and displays the answers.
 
 ## Run it
 
+```bash
+pip install -r requirements.txt
+python run.py            # command-line demo (default rules, then a juror challenge)
+streamlit run app.py     # interactive UI
 ```
-# TODO: add the exact install and run commands once the build is final
-# e.g. pip install hyperon
-#      python run.py
-```
 
-## Demo
+You can also upload your own CSV with the columns `id, title, ai_used, ai_disclosed, consent, rights, theme_fit, message, provenance, originality`. A blank cell becomes a gap, not a guess. A sample file is included (`sample_artworks.csv`) and downloadable in the app.
 
-- 3-minute video: `TODO: add link`
+## Try the juror challenge
 
-## Data and permissions
+1. Start with the default rules: 3 works Selected, 5 sent to human review, 4 Not selected.
+2. Raise the weight of **originality** from 2 to 4 in the sidebar.
+3. Watch **What changed**: *Neon Elders* and *Market Day* become Selected, and the change is recorded in the rule change log.
 
-All artworks in `data.metta` are **synthetic sample data** created by the team for this hackathon. No real artist data, HFAS archive material, AI for Peace works, or Incantio catalogue content is used. Any future use of real works requires the rights holder's consent.
+## Files
 
-> If you use real works, replace this paragraph and name the rights holder who approved it.
-
-## AI disclosure
-
-> Fill this in honestly. List every AI tool the team used and what for.
-
-- Tool: `TODO` used for `TODO` (e.g. brainstorming, drafting README text, debugging code)
-- All rules, data, and final code were reviewed by the team.
-
-## Team and roles
-
-| Member | Role |
+| File | Purpose |
 |---|---|
-| Ruth Ndegwa | `TODO` |
-| Lilian Ndolo | `TODO` |
-| Dunson Kimani | `TODO` |
+| `rules.metta` | Scoring, gates, verdicts, and the `(why ...)` explanation rule |
+| `data.metta` | 12 **synthetic** sample artworks |
+| `run.py` | Loads MeTTa, parses its answers, converts CSV rows to facts |
+| `app.py` | Streamlit interface |
+| `sample_artworks.csv` | Example CSV for the upload feature |
+| `.streamlit/config.toml` | Theme settings |
+| `requirements.txt` | Python dependencies |
 
-## Path to market and co-ownership
+## Limits 
 
-Glass Jury can be used by juries and curators of shows like HFAS, and by the BASIX job board to explain why a brief or a candidate was selected. In line with the hackathon's co-ownership principles, splits between the builders, BASIX.MARKET, and any go-to-market brokers would be agreed before anything further is built, and consent is a hard gate in the agent itself.
+- Scoring is simple: weight × a three-level rating (high / medium / low).
+- All sample data is synthetic. No real artists, HFAS, AI for Peace or Incantio works are used.
+- It only knows the rules and facts it is given. It does not learn.
+- It supports human jurors and does not replace them.
 
 ## What's next
 
-- Test on real HFAS or AI for Peace works, with rights holders' consent
-- Explanations in Swahili as well as English
-- Rule sets for other decisions: licence clearance, royalty splits, provenance checks
-- Let juries save, version, and share their rule sets so a decision can be audited later
+- Real data, shared with the rights holders' consent.
+- A human override that records the juror's reason.
+- Working with partners such as HFAS and AI for Peace to match their real selection criteria.
+
+## AI disclosure
+
+ *Claude (Anthropic) was used for brainstorming, planning and debugging the code.The team reviewed and tested all code and data.*
+
+## Team
+
+| Name | Role |
+|---|---|
+| [Ruth Ndegwa] | [ MeTTa rules and app] |
+| [Lilian Ndolo] | [ documentation and README] |
+| [Dunson Kimani] | [ Demo Video and README] |
