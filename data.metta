@@ -1,0 +1,45 @@
+; ============================================================
+; Glass Jury - SYNTHETIC sample data created by the team.
+; No real artists, HFAS, AI for Peace or Incantio works are used.
+; Criteria levels: high / medium / low. A missing fact = unknown.
+; ============================================================
+
+; a1: strong, clean work
+(artwork a1) (title a1 "Healing Hands")
+(ai-used a1 yes) (ai-disclosed a1 yes) (consent a1 granted) (rights a1 known)
+(theme-fit a1 high) (message a1 high) (provenance a1 high) (originality a1 medium)
+
+; a2: AI used but NOT disclosed  -> gate
+(artwork a2) (title a2 "Silent Archive")
+(ai-used a2 yes) (ai-disclosed a2 no) (consent a2 granted) (rights a2 known)
+(theme-fit a2 high) (message a2 medium) (provenance a2 high) (originality a2 high)
+
+; a3: artist consent missing  -> gate
+(artwork a3) (title a3 "Borderless Song")
+(ai-used a3 no) (ai-disclosed a3 na) (consent a3 missing) (rights a3 known)
+(theme-fit a3 high) (message a3 high) (provenance a3 medium) (originality a3 high)
+
+; a4: provenance gap, otherwise decent
+(artwork a4) (title a4 "Market Day")
+(ai-used a4 no) (ai-disclosed a4 na) (consent a4 granted) (rights a4 known)
+(theme-fit a4 medium) (message a4 medium) (provenance a4 low) (originality a4 medium)
+
+; a5: very original, weaker theme fit (a challenge will lift this one)
+(artwork a5) (title a5 "Neon Elders")
+(ai-used a5 yes) (ai-disclosed a5 yes) (consent a5 granted) (rights a5 known)
+(theme-fit a5 low) (message a5 medium) (provenance a5 high) (originality a5 high)
+
+; a6: rights holder unknown -> gate
+(artwork a6) (title a6 "Roots and Rivers")
+(ai-used a6 no) (ai-disclosed a6 na) (consent a6 granted) (rights a6 unknown)
+(theme-fit a6 high) (message a6 high) (provenance a6 medium) (originality a6 medium)
+
+; a7: solid, slightly less original
+(artwork a7) (title a7 "Lantern Procession")
+(ai-used a7 no) (ai-disclosed a7 na) (consent a7 granted) (rights a7 known)
+(theme-fit a7 high) (message a7 high) (provenance a7 high) (originality a7 low)
+
+; a8: incomplete data - originality not provided (flagged, never guessed)
+(artwork a8) (title a8 "Quiet Harvest")
+(ai-used a8 no) (ai-disclosed a8 na) (consent a8 granted) (rights a8 known)
+(theme-fit a8 medium) (message a8 high) (provenance a8 medium)

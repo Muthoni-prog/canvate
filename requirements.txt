@@ -1,0 +1,2 @@
+hyperon==0.2.10
+streamlit
