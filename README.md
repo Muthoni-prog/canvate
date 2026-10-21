@@ -4,9 +4,9 @@
 
 *Built for the State of the Art Hackathon (BASIX.MARKET), MeTTa Foundation track, "The Glass Box Agent" challenge. HFAS brief: a jury assistant that shows why an artwork was selected.*
 
-**Demo video:** [ADD YOUR VIDEO LINK HERE]
+**Demo video:** (https://drive.google.com/file/d/1DLQ2BnpQDRnXMH7zz2_6R7yDl96HlQCA/view?usp=sharing)
 
-**Live app:** [https://canvate-95appt2qmrbuplfzgbnymxf.streamlit.app/](https://canvate-95appt2qmrbuplfzgbnymxf.streamlit.app/)
+**Live app:** https://canvate-95appt2qmrbuplfzgbnymxf.streamlit.app/](https://canvate-95appt2qmrbuplfzgbnymxf.streamlit.app/)
 
 ## Track and challenge
 
